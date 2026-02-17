@@ -18,7 +18,6 @@
         };
 
         /* Space: tap = SPACE, hold = momentary layer 4 */
-
         sp_l4: space_layer4 {
             compatible = "zmk,behavior-hold-tap";
             label = "SPACE_LAYER4";
@@ -26,7 +25,7 @@
             tapping-term-ms = <200>;
             quick_tap_ms = <175>;
             flavor = "tap-preferred";
-            bindings = <&kp SPACE>, <&mo 4>;
+            bindings = <&kp SPACE &mo 4>;
         };
     };
 
@@ -36,107 +35,92 @@
         default_layer {
             display-name = "Base (Colemak)";
             bindings = <
-&kp EQUAL  &kp N1     &kp N2    &kp N3    &kp N4     &kp N5  &tog 1                                                                         &mo 3  &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp MINUS
-&kp TAB    &kp Q      &kp W     &kp F     &kp P      &kp G   &none                                                                          &none  &kp J   &kp L   &kp U      &kp Y     &kp SEMI  &kp BSLH
-&kp ESC    &kp A      &kp R     &kp S     &kp T      &kp D   &none             &kp LCTRL  &kp LALT    &kp LGUI   &kp RCTRL                  &none  &kp H   &kp N   &kp E      &kp I     &kp O     &kp SQT
-&kp LSHFT  &kp Z      &kp X     &kp C     &kp V      &kp B                                &kp HOME    &kp PG_UP                                    &kp K   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
-&mo 2      &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT                  &kp BSPC  &kp DEL    &kp END     &kp PG_DN  &kp ENTER  &sp_l4 SPACE 2                 &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &mo 2
+                &kp EQUAL  &kp N1     &kp N2    &kp N3    &kp N4     &kp N5  &tog 1                                         &mo 3  &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp MINUS
+                &kp TAB    &kp Q      &kp W     &kp F     &kp P      &kp G   &none                                          &none  &kp J   &kp L   &kp U      &kp Y     &kp SEMI  &kp BSLH
+                &kp ESC    &kp A      &kp R     &kp S     &kp T      &kp D   &none             &kp LCTRL  &kp LALT  &kp LGUI  &kp RCTRL  &none  &kp H   &kp N   &kp E      &kp I     &kp O     &kp SQT
+                &kp LSHFT  &kp Z      &kp X     &kp C     &kp V      &kp B                                &kp HOME  &kp PG_UP                     &kp K   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
+                &mo 2      &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT                  &kp BSPC  &kp DEL    &kp END   &kp PG_DN  &kp ENTER  &sp_l4    &kp UP   &kp DOWN   &kp LBKT  &kp RBKT  &mo 2
             >;
         };
 
         fn {
             display-name = "Fn";
             bindings = <
-&kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6  &tog 1                                                    &mo 3  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11  &kp F12
-&trans  &trans  &trans  &trans  &trans  &trans  &none                                                     &none  &trans  &trans  &trans  &trans   &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &none           &trans  &trans    &trans  &trans          &none  &trans  &trans  &trans  &trans   &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans                          &trans    &trans                         &trans  &trans  &trans  &trans   &trans   &trans
-&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans    &trans  &trans  &trans                 &trans  &trans  &trans   &trans   &trans
+                &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6  &tog 1                          &mo 3  &kp F7  &kp F8  &kp F9   &kp F10  &kp F11  &kp F12
+                &trans  &trans  &trans  &trans  &trans  &trans  &none                           &none  &trans  &trans  &trans  &trans   &trans   &trans
+                &trans  &trans  &trans  &trans  &trans  &trans  &none        &trans &trans &trans &trans   &none  &trans  &trans  &trans  &trans   &trans   &trans
+                &trans  &trans  &trans  &trans  &trans  &trans                      &trans &trans           &trans  &trans  &trans  &trans  &trans   &trans
+                &trans  &trans  &trans  &trans  &trans               &trans &trans &trans &trans &trans &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
         /* Layer 4: Symbols (held via Space) */
-       sym {
+        sym {
             display-name = "Sym (Space)";
             bindings = <
-                /* Row 1 (14) */
+                /* Row 1 */
                 &trans &trans &trans &trans &trans &trans &trans                               &trans &trans &trans &trans &trans &trans &trans
 
-                /* Row 2 (14): TAB Q W F P G  |  J L U Y ; \ */
+                /* Row 2: TAB Q W F P G | J L U Y ; \ */
                 &trans
-                &kp LS(GRAVE)     /* Q -> ~ */
-                &kp LS(SQT)       /* W -> " */
-                &kp LS(BSLH)      /* F -> | */
-                &kp SQT           /* P -> ' */
-                &kp LS(FSLH)      /* G -> ? */
+                &kp LS(GRAVE)      /* Q -> ~  (Shift+`) */
+                &kp LS(SQT)        /* W -> "  (Shift+') */
+                &kp LS(BSLH)       /* F -> |  (Shift+\) */
+                &kp SQT            /* P -> ' */
+                &kp LS(FSLH)       /* G -> ?  (Shift+/) */
                 &trans
                 &trans
-                &kp LS(N1)        /* J -> ! */
-                &kp LS(N9)        /* L -> ( */
-                &kp LS(N7)        /* U -> & */
-                &kp LS(N0)        /* Y -> ) */
+                &kp LS(N1)         /* J -> ! */
+                &kp LS(N9)         /* L -> ( */
+                &kp LS(N7)         /* U -> & */
+                &kp LS(N0)         /* Y -> ) */
                 &trans
                 &trans
 
-                /* Row 3 (18): ESC A R S T D | (mods cluster) | H N E I O ' */
+                /* Row 3: ESC A R S T D | mods cluster | H N E I O ' */
                 &trans
-                &kp LS(N6)        /* A -> ^ */
-                &kp EQUAL         /* R -> = */
-                &kp LS(MINUS)     /* S -> _ */
-                &kp LS(N4)        /* T -> $ */
-                &kp LS(N8)        /* D -> * */
+                &kp LS(N6)         /* A -> ^ */
+                &kp EQUAL          /* R -> = */
+                &kp LS(MINUS)      /* S -> _ */
+                &kp LS(N4)         /* T -> $ */
+                &kp LS(N8)         /* D -> * */
                 &trans
                 &trans &trans &trans &trans
                 &trans
-                &kp LS(N5)        /* H -> % */
-                &kp LS(LBKT)      /* N -> { */
-                &kp SPACE         /* E -> SPACE */
-                &kp LS(RBKT)      /* I -> } */
+                &kp LS(N5)         /* H -> % */
+                &kp LS(LBKT)       /* N -> { */
+                &kp SPACE          /* E -> SPACE */
+                &kp LS(RBKT)       /* I -> } */
                 &trans
                 &trans
 
-                /* Row 4 (14): SHIFT Z X C V B | HOME PGUP | K M , . / SHIFT */
+                /* Row 4: SHIFT Z X C V B | HOME PGUP | K M , . / SHIFT */
                 &trans
-                &kp LS(COMMA)     /* Z -> < */
-                &kp LS(N3)        /* X -> # */
-                &kp MINUS         /* C -> - */
-                &kp LS(DOT)       /* V -> > */
-                &kp FSLH          /* B -> / */
+                &kp LS(COMMA)      /* Z -> < */
+                &kp LS(N3)         /* X -> # */
+                &kp MINUS          /* C -> - */
+                &kp LS(DOT)        /* V -> > */
+                &kp FSLH           /* B -> / */
                 &trans
                 &trans
-                &kp LS(N2)        /* K -> @ */
-                &kp LBKT          /* M -> [ */
-                &kp TAB           /* , -> TAB */
-                &kp RBKT          /* . -> ] */
+                &kp LS(N2)         /* K -> @ */
+                &kp LBKT           /* M -> [ */
+                &kp TAB            /* , -> TAB */
+                &kp RBKT           /* . -> ] */
                 &trans
                 &trans
 
-                /* Row 5 (16): ... LEFT RIGHT ... (RIGHT -> +) ... */
+                /* Row 5: ... LEFT RIGHT ... (RIGHT -> +) ... */
                 &trans &trans &trans &trans
-                &kp LS(EQUAL)     /* RIGHT ARROW position -> + */
+                &kp LS(EQUAL)      /* RIGHT ARROW position -> + */
                 &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans
             >;
         };
 
-        extra1 {
-            display-name = "Red";
-            status = "reserved";
-        };
-
-        extra2 {
-            display-name = "Purple";
-            status = "reserved";
-        };
-
-        extra3 {
-            display-name = "Cyan";
-            status = "reserved";
-        };
-
-        extra4 {
-            display-name = "Yellow";
-            status = "reserved";
-        };
+        extra1 { display-name = "Red";    status = "reserved"; };
+        extra2 { display-name = "Purple"; status = "reserved"; };
+        extra3 { display-name = "Cyan";   status = "reserved"; };
+        extra4 { display-name = "Yellow"; status = "reserved"; };
     };
 };
